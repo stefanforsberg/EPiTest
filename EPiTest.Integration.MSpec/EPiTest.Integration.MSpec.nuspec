@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<package> 
+  <metadata> 
+    <id>EPiTest.Integration.MSpec</id> 
+    <version>1.0</version> 
+    <authors>Stefan Forsberg</authors> 
+    <owners>Stefan Forsberg</owners>
+    <description>MSPec base for Pet.Integration</description> 
+    <projectUrl>http://popkram.com/</projectUrl>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <dependencies>
+        <dependency id="EPiTest.Integration" version="1.0" />
+        <dependency id="Machine.Specifications-Signed" version="0.4.13.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Drawing" />
+    </frameworkAssemblies>
+    <tags>EPiServer, MSpec</tags>
+    <language>en-US</language> 
+  </metadata> 
+</package>
