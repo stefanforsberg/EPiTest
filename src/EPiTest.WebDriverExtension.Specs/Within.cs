@@ -21,7 +21,7 @@ namespace EPiTest.WebDriverExtension.Specs
         {
             Driver.Within("#wrapper-one", e =>
                 {
-                    e.Element(".some-class").Text.ShouldEqual("Wrapped span one");
+                    e.Find(".some-class").Text.ShouldEqual("Wrapped span one");
                 });
         };
 
@@ -29,7 +29,7 @@ namespace EPiTest.WebDriverExtension.Specs
         {
             Driver.Within("#wrapper-two", e =>
             {
-                e.Element(".some-class").Text.ShouldEqual("Wrapped span two");
+                e.Find(".some-class").Text.ShouldEqual("Wrapped span two");
             });
         };
     }

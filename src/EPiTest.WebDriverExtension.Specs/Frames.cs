@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using Machine.Specifications;
 using OpenQA.Selenium;
 
@@ -31,6 +32,26 @@ namespace EPiTest.WebDriverExtension.Specs
                 });
 
             Driver.Find("#div1").Text.ShouldEqual("Some text");
+        };
+    }
+
+    [Subject("Switching frames")]
+    public class when_switching_to_a_frame_and_clicking_a_link_in_that_frame : TestBase
+    {
+        static IWebElement _element;
+
+        Establish context = () =>
+        {
+            Visit("Frames.html");
+        };
+
+        It should_perform_the_click_action = () =>
+        {
+            Driver.WithinFrame("frame1", d =>
+            {
+                d.ClickLink("View as Visitor Group");
+                d.Url.ShouldEndWith("SimpleElements.html");
+            });            
         };
     }
 

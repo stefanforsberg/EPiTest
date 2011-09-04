@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using Machine.Specifications;
+using EPiTest.WebDriverExtension;
 
 namespace EPiTest.WebDriverExtension.Specs
 {
