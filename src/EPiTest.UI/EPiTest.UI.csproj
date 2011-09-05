@@ -54,8 +54,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditModeTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UITestBase.cs" />
+    <Compile Include="DriverAssertionExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
