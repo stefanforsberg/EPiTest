@@ -9,40 +9,40 @@ namespace EPiTest.UI
 {
     public static class DriverAssertionExtensions
     {
-        public static void ShouldHave(this IWebDriver driver, By by)
+        public static void ShouldHave(this ISearchContext searchContext, By by)
         {
-            if (driver.FindElements(by).Count == 0)
+            if (searchContext.FindElements(by).Count == 0)
             {
                 throw new SpecificationException(string.Format("Failed to find " + by));
             }
         }
 
-        public static void ShouldNotHave(this IWebDriver driver, By by)
+        public static void ShouldNotHave(this ISearchContext searchContext, By by)
         {
-            if (driver.FindElements(by).Count != 0)
+            if (searchContext.FindElements(by).Count != 0)
             {
                 throw new SpecificationException(string.Format("Should not have found " + by));
             }
         }
 
-        public static void ShouldHaveCss(this IWebDriver driver, string css)
+        public static void ShouldHaveCss(this ISearchContext searchContext, string css)
         {
-            driver.ShouldHave(By.CssSelector(css));
+            searchContext.ShouldHave(By.CssSelector(css));
         }
 
-        public static void ShouldNotHaveCss(this IWebDriver driver, string css)
+        public static void ShouldNotHaveCss(this ISearchContext searchContext, string css)
         {
-            driver.ShouldNotHave(By.CssSelector(css));
+            searchContext.ShouldNotHave(By.CssSelector(css));
         }
 
-        public static void ShouldHaveXPath(this IWebDriver driver, string id)
+        public static void ShouldHaveXPath(this ISearchContext searchContext, string id)
         {
-            driver.ShouldHave(By.XPath(id));
+            searchContext.ShouldHave(By.XPath(id));
         }
 
-        public static void ShouldNotHaveXPath(this IWebDriver driver, string id)
+        public static void ShouldNotHaveXPath(this ISearchContext searchContext, string id)
         {
-            driver.ShouldNotHave(By.XPath(id));
+            searchContext.ShouldNotHave(By.XPath(id));
         }
     }
 }
