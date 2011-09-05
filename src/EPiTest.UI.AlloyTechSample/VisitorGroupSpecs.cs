@@ -27,7 +27,7 @@ namespace EPiTest.UI.AlloyTechSample
 
         It should_print_text_tailored_to_the_choosen_visitor_group = () =>
         {
-            Driver.WithinFrame("PreviewFrame", preview =>
+            Driver.WithinFrame(FrameEditPanelPreview, preview =>
                 {
                     preview.Content().ShouldContain("We are recruiting");
                 });
