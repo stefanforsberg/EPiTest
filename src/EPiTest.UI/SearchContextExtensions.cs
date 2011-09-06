@@ -6,6 +6,9 @@ namespace EPiTest.UI
 {
     public static class SearchContextExtensions
     {
+        public const string XPathForCheckbox = "//input[@type='checkbox' and (@id=(//label[.='{0}']/@for) or @value='{0}')]";
+        public const string XPathForTypeableField = "//input[(@type='text' or @type='password') and (@id=(//label[.='{0}']/@for) or @id='{0}' or @name='{0}' or @value='{0}')] | //textarea[(@id=(//label[.='{0}']/@for) or @id='{0}' or @name='{0}' or @value='{0}')]";
+
         public static void Within(this ISearchContext searchContext, string css, Action<IWebElement> action)
         {
             searchContext.Within(By.CssSelector(css), action);
@@ -16,7 +19,6 @@ namespace EPiTest.UI
             searchContext.Within(Helpers.GetBy(css, xpath), action);
         }
 
-        
 
         public static void Within(this ISearchContext searchContext, By by, Action<IWebElement> action)
         {
@@ -93,9 +95,9 @@ namespace EPiTest.UI
             }
         }
 
-        public static void Uncheck(this IWebDriver driver, string valueOrLabelText)
+        public static void Uncheck(this ISearchContext searchContext, string valueOrLabelText)
         {
-            var checkBox = driver.Find(xpath: String.Format(XPathForCheckbox, valueOrLabelText));
+            var checkBox = searchContext.Find(xpath: String.Format(XPathForCheckbox, valueOrLabelText));
 
             if (checkBox.Selected)
             {
@@ -103,7 +105,9 @@ namespace EPiTest.UI
             }
         }
 
-        public const string XPathForCheckbox = "//input[@type='checkbox' and (@id=(//label[.='{0}']/@for) or @value='{0}')]";
-        public const string XPathForTypeableField = "//input[(@type='text' or @type='password') and (@id=(//label[.='{0}']/@for) or @id='{0}' or @name='{0}' or @value='{0}')] | //textarea[(@id=(//label[.='{0}']/@for) or @id='{0}' or @name='{0}' or @value='{0}')]";
+        public static IEnumerable<IWebElement> Links(this ISearchContext searchContext)
+        {
+            return searchContext.All("a");
+        }
     }
 }
