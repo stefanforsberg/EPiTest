@@ -8,7 +8,7 @@ namespace EPiTest.UI.AlloyTechSample
     {
         protected static string BreadcrumbCss = ".BreadcrumbArea";
 
-        public static IWebElement Breadcumb
+        public static IWebElement Breadcrumb
         {
             get { return Driver.All(BreadcrumbCss).FirstOrDefault(); }
         }
@@ -23,7 +23,7 @@ namespace EPiTest.UI.AlloyTechSample
 
         It should_not_have_any_breadcrumbs = () =>
             {
-                Breadcumb.ShouldBeNull();
+                Breadcrumb.ShouldBeNull();
             };
     }
 
@@ -36,27 +36,27 @@ namespace EPiTest.UI.AlloyTechSample
 
         It should_have_an_area_for_breadcrumbs = () =>
             {
-                Breadcumb.ShouldNotBeNull();
+                Breadcrumb.ShouldNotBeNull();
             };
 
         It should_contain_three_links = () =>
             {
-                Breadcumb.Links().Count().ShouldEqual(3);
+                Breadcrumb.Links().Count().ShouldEqual(3);
             };
 
         It should_the_first_link_lead_to_start_page = () =>
             {
-                Breadcumb.Links().ElementAt(0).Text.ShouldEqual("Start");
+                Breadcrumb.Links().ElementAt(0).Text.ShouldEqual("Start");
             };
 
         It should_the_second_link_lead_to_a_page_on_the_second_level = () =>
             {
-                Breadcumb.Links().ElementAt(1).Text.ShouldEqual("Company");
+                Breadcrumb.Links().ElementAt(1).Text.ShouldEqual("Company");
             };
 
         It should_the_third_link_lead_to_the_current_page = () =>
             {
-                Breadcumb.Links().ElementAt(2).GetAttribute("href").ShouldEqual(Driver.Url);
+                Breadcrumb.Links().ElementAt(2).GetAttribute("href").ShouldEqual(Driver.Url);
             };
     }
 }
