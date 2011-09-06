@@ -1,8 +1,27 @@
-﻿using Machine.Specifications;
+﻿using System.Linq;
+using Machine.Specifications;
+using OpenQA.Selenium;
 
 namespace EPiTest.UI.AlloyTechSample
 {
-    public class when_entering_all_requiered_fields_and_submitting : UiTestBase
+    public class ContactUsBase : UiTestBase
+    {
+        public static string Form { get { return "[id$='FormPanel']"; } }
+
+        public static IWebElement ThankYou
+        {
+            get { return Driver.All(".thankyoumessage").FirstOrDefault() ; }
+        }
+
+        public static IWebElement ValidationError(int forTableRow)
+        {
+            return Driver
+                .All(string.Format("{0} tr:nth-child({1}) .xformvalidator", Form, forTableRow))
+                .FirstOrDefault();
+        }
+    }
+
+    public class when_entering_all_requiered_fields_and_submitting : ContactUsBase
     {
         Establish context = () =>
             {
@@ -11,7 +30,7 @@ namespace EPiTest.UI.AlloyTechSample
 
         Because of = () =>
             {
-                Driver.Within("[id$='FormPanel']", e =>
+                Driver.Within(Form, e =>
                     {
                         e.FillIn("Your name:", "Stefan");
                         e.FillIn("Your e-mail:", "some@thing.com");
@@ -22,11 +41,11 @@ namespace EPiTest.UI.AlloyTechSample
 
         It should_display_a_thank_you_message = () =>
             {
-                Driver.ShouldHaveCss(".thankyoumessage");
+                ThankYou.ShouldNotBeNull();
             };
     }
 
-    public class when_a_requiered_field_is_not_given_a_value : UiTestBase
+    public class when_a_requiered_field_is_not_given_a_value : ContactUsBase
     {
         Establish context = () =>
         {
@@ -35,7 +54,7 @@ namespace EPiTest.UI.AlloyTechSample
 
         Because of = () =>
         {
-            Driver.Within("[id$='FormPanel']", e =>
+            Driver.Within(Form, e =>
             {
                 e.FillIn("Your name:", "Stefan");
                 e.FillIn("Your e-mail:", "some@thing.com");
@@ -45,7 +64,7 @@ namespace EPiTest.UI.AlloyTechSample
 
         It should_indicate_that_the_field_must_have_a_value = () =>
         {
-            Driver.ShouldHaveCss("[id$='FormPanel'] tr:nth-child(3) .xformvalidator");
+            ValidationError(3).ShouldNotBeNull();
         };
     }
 }
