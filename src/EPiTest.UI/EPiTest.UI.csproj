@@ -55,19 +55,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EditModeTestBase.cs" />
+    <Compile Include="Helpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchContextExtensions.cs" />
     <Compile Include="UITestBase.cs" />
     <Compile Include="DriverAssertionExtensions.cs" />
+    <Compile Include="WebDriverExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EPiTest.WebDriverExtension\EPiTest.WebDriverExtension.csproj">
-      <Project>{8837A5FF-696E-4F02-94AA-DCDB612212F0}</Project>
-      <Name>EPiTest.WebDriverExtension</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
+using EPiTest.UI;
 using Machine.Specifications;
 using OpenQA.Selenium;
 

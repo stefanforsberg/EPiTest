@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EPiTest.UI;
 using Machine.Specifications;
 using OpenQA.Selenium;
 

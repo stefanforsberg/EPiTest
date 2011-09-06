@@ -1,4 +1,3 @@
-using EPiTest.WebDriverExtension;
 
 namespace EPiTest.UI
 {

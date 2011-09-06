@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EPiTest.WebDriverExtension;
-using Machine.Specifications;
+﻿using Machine.Specifications;
 
 namespace EPiTest.UI.AlloyTechSample
 {

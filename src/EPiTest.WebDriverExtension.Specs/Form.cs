@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using EPiTest.UI;
 using Machine.Specifications;
 using EPiTest.WebDriverExtension;
 

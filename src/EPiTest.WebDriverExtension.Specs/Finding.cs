@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using EPiTest.UI;
 using Machine.Specifications;
 using OpenQA.Selenium;
 
