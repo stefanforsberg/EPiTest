@@ -8,7 +8,16 @@ namespace EPiTest.UI
 
         public static void VisitEditModeForPage(int id)
         {
-            Visit("/systemUI/CMS/Edit/Default.aspx?id=" + id);
+            Visit(string.Format("/{0}/CMS/Edit/Default.aspx?id={1}", 
+                System.Configuration.ConfigurationManager.AppSettings["UiSlug"], 
+                id));
+        }
+
+        public static void VisitEditPanelForPage(int id)
+        {
+            Visit(string.Format("/{0}/CMS/Edit/EditPanel.aspx?id={1}",
+                System.Configuration.ConfigurationManager.AppSettings["UiSlug"], 
+                id));
         }
 
         public static void Login(string userName, string password)

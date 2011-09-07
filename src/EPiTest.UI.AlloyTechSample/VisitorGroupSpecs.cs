@@ -7,7 +7,7 @@ namespace EPiTest.UI.AlloyTechSample
         Establish context = () =>
             {
                 Login("sf", "p@ssword!");
-                Visit("/systemUI/CMS/Edit/EditPanel.aspx?id=3");
+                VisitEditPanelForPage(3);
             };
 
         Because of = () =>
