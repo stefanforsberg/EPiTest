@@ -72,6 +72,17 @@ namespace EPiTest.WebDriverExtension.Specs
         Behaves_like<LinkHasBeenClickedBehaviors> the_link_has_been_clicked;
     }
 
+    [Subject("Clicking elements")]
+    public class when_clicking_an_image_button_by_title : with_click
+    {
+        Because of = () =>
+        {
+            Driver.ClickButton("Search");
+        };
+
+        Behaves_like<LinkHasBeenClickedBehaviors> the_link_has_been_clicked;
+    }
+
     [Behaviors]
     public class LinkHasBeenClickedBehaviors
     {

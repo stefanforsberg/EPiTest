@@ -37,9 +37,9 @@ namespace EPiTest.UI
             elementToTypeIn.SendKeys(textToType);
         }
 
-        public static void ClickButton(this ISearchContext searchContext, string idOrValue)
+        public static void ClickButton(this ISearchContext searchContext, string idOrValueOrTitle)
         {
-            string xpath = String.Format("//input[(@type='button' or @type='submit') and (@value='{0}' or @id='{0}')] | //button[(text()='{0}' or @id='{0}')]", idOrValue);
+            string xpath = String.Format("//input[(@type='button' or @type='submit' or @type='image') and (@value='{0}' or @id='{0}' or @title='{0}')] | //button[(text()='{0}' or @id='{0}')]", idOrValueOrTitle);
 
             searchContext.Find(xpath: xpath).Click();
         }
