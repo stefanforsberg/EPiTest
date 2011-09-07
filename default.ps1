@@ -23,7 +23,7 @@ properties {
   $env:Path += ";$mspec_dir;$nuget_dir"
 }
 
-task default -depends Compile, Specs
+task default -depends Compile, Specs, Nuget
 
 task Compile {
     msbuild "$sln_file"
@@ -34,7 +34,8 @@ task Specs {
 }
 
 task Nuget {
-    exec { nuget.exe  }
+    cd "$base_dir\src\EPiTest.UI"
+    exec { nuget.exe pack EPiTest.UI.csproj -OutputDirectory ..\..\build }
 }
 
 task CopyConfigFiles {
