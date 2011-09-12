@@ -15,6 +15,7 @@
     <tags>EPiServer Selenium</tags>
   </metadata>
 <files>
-  <file src="Content\**\*.*" target="Content" /> 
+  <file src="Content\**\*.*" target="Content" />
+  <file src="Tools\**\*.*" target="Tools" />
 </files>
 </package>
