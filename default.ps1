@@ -37,6 +37,25 @@ task Nuget {
     cd "$base_dir\src\EPiTest.UI"
     exec { nuget.exe pack EPiTest.UI.csproj -OutputDirectory ..\..\build }
     cd "$base_dir"
+      
+    Copy-Item "$base_dir\src\EPiTest.UI.AlloyTechSample\*.cs" "$base_dir\src\EPiTest.UI.AlloyTechSample\Content\"
+    
+    cd "$base_dir\src\EPiTest.UI.AlloyTechSample\Content\"
+    
+    $allCsFiles = Get-ChildItem -recurse  | where {$_.extension -eq ".cs"}
+
+    $allCsFiles | ForEach-Object {
+        Get-Content $_.FullName | Foreach-Object {
+            $_ -replace "EPiTest.UI.AlloyTechSample", ("$" + "rootnamespace" + "$")
+        } | Set-Content ($_.FullName + ".pp")
+        
+        Remove-Item $_.FullName
+    }
+    
+    cd "$base_dir\src\EPiTest.UI.AlloyTechSample"
+    exec { nuget.exe pack EPiTest.UI.AlloyTechSample.nuspec -OutputDirectory ..\..\build }
+    cd "$base_dir"
+    
 }
 
 task CopyConfigFiles {

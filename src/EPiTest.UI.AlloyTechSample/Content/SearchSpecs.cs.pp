@@ -1,9 +1,9 @@
-﻿using EPiTest.UI;
+using EPiTest.UI;
 using System.Linq;
 using Machine.Specifications;
 using OpenQA.Selenium;
 
-namespace EPiTest.UI.AlloyTechSample
+namespace $rootnamespace$
 {
     public class SearchBase : UiTestBase
     {

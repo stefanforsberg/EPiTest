@@ -1,7 +1,7 @@
-﻿using EPiTest.UI;
+using EPiTest.UI;
 using Machine.Specifications;
 
-namespace EPiTest.UI.AlloyTechSample
+namespace $rootnamespace$
 {
     public class when_viewing_startpage_as_a_job_seeker : EditModeTestBase
     {

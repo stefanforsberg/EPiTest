@@ -58,7 +58,6 @@
   <ItemGroup>
     <Compile Include="BreadcrumbSpecs.cs" />
     <Compile Include="ContactUsSpecs.cs" />
-    <Compile Include="ImdbSearchSpec.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchSpecs.cs" />
     <Compile Include="VisitorGroupSpecs.cs" />
