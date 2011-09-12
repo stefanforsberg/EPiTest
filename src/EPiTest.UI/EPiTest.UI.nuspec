@@ -14,4 +14,7 @@
     <copyright>Copyright 2011</copyright>
     <tags>EPiServer Selenium WebDriver</tags>
   </metadata>
+<files>
+  <file src="Content\**\*.*" target="Content" /> 
+</files>
 </package>
