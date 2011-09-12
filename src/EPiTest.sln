@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPiTest.UI", "EPiTest.UI\EP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPiTest.UI.AlloyTechSample", "EPiTest.UI.AlloyTechSample\EPiTest.UI.AlloyTechSample.csproj", "{3212BCD3-10F0-4A96-8458-7218CB72A215}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPiTest.Core", "EPiTest.Core\EPiTest.Core.csproj", "{884C90F5-753C-43D2-BCFA-55AEE097BE80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPiTest.DB", "EPiTest.DB\EPiTest.DB.csproj", "{9363B183-4890-4310-A66B-36C0EE186581}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,14 @@ Global
 		{3212BCD3-10F0-4A96-8458-7218CB72A215}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3212BCD3-10F0-4A96-8458-7218CB72A215}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3212BCD3-10F0-4A96-8458-7218CB72A215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{884C90F5-753C-43D2-BCFA-55AEE097BE80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{884C90F5-753C-43D2-BCFA-55AEE097BE80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{884C90F5-753C-43D2-BCFA-55AEE097BE80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{884C90F5-753C-43D2-BCFA-55AEE097BE80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9363B183-4890-4310-A66B-36C0EE186581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9363B183-4890-4310-A66B-36C0EE186581}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9363B183-4890-4310-A66B-36C0EE186581}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9363B183-4890-4310-A66B-36C0EE186581}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
