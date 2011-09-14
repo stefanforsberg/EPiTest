@@ -38,24 +38,36 @@ task Nuget {
     exec { nuget.exe pack EPiTest.UI.csproj -OutputDirectory ..\..\build }
     cd "$base_dir"
       
-    Copy-Item "$base_dir\src\EPiTest.UI.AlloyTechSample\*.cs" "$base_dir\src\EPiTest.UI.AlloyTechSample\Content\"
+    Create-Transformation-Code-Files "$base_dir\src\EPiTest.DB\" "$base_dir\src\EPiTest.DB\Content\" "EPiTest.DB"
     
-    cd "$base_dir\src\EPiTest.UI.AlloyTechSample\Content\"
+    cd "$base_dir\src\EPiTest.DB"
+    exec { nuget.exe pack EPiTest.DB.nuspec -OutputDirectory ..\..\build }
+    cd "$base_dir"
     
-    $allCsFiles = Get-ChildItem -recurse  | where {$_.extension -eq ".cs"}
-
-    $allCsFiles | ForEach-Object {
-        Get-Content $_.FullName | Foreach-Object {
-            $_ -replace "EPiTest.UI.AlloyTechSample", ("$" + "rootnamespace" + "$")
-        } | Set-Content ($_.FullName + ".pp")
-        
-        Remove-Item $_.FullName
-    }
+    Create-Transformation-Code-Files "$base_dir\src\EPiTest.UI.AlloyTechSample\" "$base_dir\src\EPiTest.UI.AlloyTechSample\Content\" "EPiTest.UI.AlloyTechSample"
     
     cd "$base_dir\src\EPiTest.UI.AlloyTechSample"
     exec { nuget.exe pack EPiTest.UI.AlloyTechSample.nuspec -OutputDirectory ..\..\build }
     cd "$base_dir"
     
+}
+
+function Create-Transformation-Code-Files {
+    param([string]$rootPath, [string]$destinationPath, [string]$namespaceToReplace)
+    
+    Copy-Item "$rootPath*.cs" "$destinationPath"
+    
+    cd "$destinationPath"
+    
+    $allCsFiles = Get-ChildItem -recurse  | where {$_.extension -eq ".cs"}
+
+    $allCsFiles | ForEach-Object {
+        Get-Content $_.FullName | Foreach-Object {
+            $_ -replace "$namespaceToReplace", ("$" + "rootnamespace" + "$")
+        } | Set-Content ($_.FullName + ".pp")
+        
+        Remove-Item $_.FullName
+    }
 }
 
 task CopyConfigFiles {

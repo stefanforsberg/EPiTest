@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>EPiTest.DB</id>
+    <version>1.0</version>
+    <title>EPiTest.DB</title>
+    <authors>Stefan Forsberg</authors>
+    <owners>Stefan Forsberg</owners>
+    <projectUrl>https://github.com/stefanforsberg/EPiTest</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Integration tests against an EPiServer DB</description>
+    <copyright>Copyright 2011</copyright>
+    <tags>EPiServer EPiTest EpiTest.DB</tags>
+    <dependencies>
+      <dependency id="Machine.Specifications" version="0.4.24.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
+      <frameworkAssembly assemblyName="System.Configuration" targetFramework="net40" />
+      <frameworkAssembly assemblyName="EPiServer" />
+      <frameworkAssembly assemblyName="EPiServer.BaseLibrary" />
+      <frameworkAssembly assemblyName="EPiServer.Configuration" />
+      <frameworkAssembly assemblyName="EPiServer.Framework" />
+      <frameworkAssembly assemblyName="EPiServer.Implementation" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="Content\**\*.*" target="Content" />
+    <file src="Tools\**\*.*" target="Tools" />
+  </files>
+</package>
