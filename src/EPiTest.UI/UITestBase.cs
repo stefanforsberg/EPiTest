@@ -13,6 +13,11 @@ namespace EPiTest.UI
 
         public static void Visit(string relativeUrl)
         {
+            if (relativeUrl.StartsWith("/"))
+            {
+                relativeUrl = relativeUrl.Substring(1);
+            }
+
             Driver.Navigate().GoToUrl(BaseUrl + relativeUrl);
         }
 
