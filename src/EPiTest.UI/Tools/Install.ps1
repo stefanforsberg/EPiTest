@@ -16,7 +16,14 @@ $project.Globals.DTE.Solution.Projects | ForEach-Object {
     $uiTestConfig = [xml](get-content "$uiConfigPath\app.config")    
     
     $uiTestConfig.configuration.appSettings.add[0].value = $webConfigFile.episerver.sites.site.siteSettings.siteUrl
-    $uiTestConfig.configuration.appSettings.add[1].value = $webConfigFile.episerver.sites.site.siteSettings.uiUrl
+    
+    $uiUrl = $webConfigFile.episerver.sites.site.siteSettings.uiUrl
+    
+    if($uiUrl.StartsWith("~/")) {
+        $uiUrl = $uiUrl.Substring(2)
+    }
+    
+    $uiTestConfig.configuration.appSettings.add[1].value = $uiUrl
     
     $uiTestConfig.Save("$uiConfigPath\app.config")
 }
