@@ -17,11 +17,6 @@
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
       <frameworkAssembly assemblyName="System.Configuration" targetFramework="net40" />
-      <frameworkAssembly assemblyName="EPiServer" />
-      <frameworkAssembly assemblyName="EPiServer.BaseLibrary" />
-      <frameworkAssembly assemblyName="EPiServer.Configuration" />
-      <frameworkAssembly assemblyName="EPiServer.Framework" />
-      <frameworkAssembly assemblyName="EPiServer.Implementation" />
     </frameworkAssemblies>
   </metadata>
   <files>

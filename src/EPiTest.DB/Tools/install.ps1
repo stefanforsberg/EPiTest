@@ -18,16 +18,33 @@ function Copy-EPiServer-Binaries {
     Copy-Item $epiSitePath\bin\*.dll $destinationPath\bin\release
 }
 
+function AddReferenceFromEPiServerProject {
+    param($epiServerproject, $epiProjectFolder, $assemblyName)
+    
+    $pathToAssembly = (Get-ChildItem $epiProjectFolder -include "$assemblyName.dll" -Recurse).FullName
+    
+    if($pathToAssembly -ne "") {
+        $project.Object.References.Add($pathToAssembly)
+    }
+}
+
 $projectDir = (Get-Item $project.FullName).Directory
 
 $solutionDir = (Get-Item $project.Globals.DTE.Solution.FullName).Directory
 
 Write-Host "Trying to find an EPiServer website in the solution." -ForegroundColor magenta
 
+$epiProject = ""
 $epiProjectFolder = ""
 $project.Globals.DTE.Solution.Projects | ForEach-Object {
-    $dir = ([System.IO.FileInfo]$_.FullName).DirectoryName
-    if(test-path "$dir\EPiServer.config") { $epiProjectFolder = $dir }
+    if($_.FullName -ne "")
+    {
+        $dir = ([System.IO.FileInfo]$_.FullName).DirectoryName
+        if(test-path "$dir\EPiServer.config") { 
+            $epiProjectFolder = $dir 
+            $epiProject = $_
+        }
+    }
 }
 
 if($epiProjectFolder -ne "") {
@@ -42,6 +59,13 @@ if($epiProjectFolder -ne "") {
     Write-Host "Trying to copy EPiServer binaries." -ForegroundColor magenta
     
     Copy-EPiServer-Binaries $epiProjectFolder $projectDir
+    
+    #Write-Host "Trying to add references to EPiServer assemblies"  -ForegroundColor magenta
+    #AddReferenceFromEPiServerProject $epiProject $epiProjectFolder "EPiServer"
+    #AddReferenceFromEPiServerProject $epiProject $epiProjectFolder "EPiServer.BaseLibrary"
+    #AddReferenceFromEPiServerProject $epiProject $epiProjectFolder "EPiServer.Configuration"
+    #AddReferenceFromEPiServerProject $epiProject $epiProjectFolder "EPiServer.Framework"
+    #AddReferenceFromEPiServerProject $epiProject $epiProjectFolder "EPiServer.Implementation"   
 }
 else {
     Write-Host "Could not find an EPiServer site web project."
