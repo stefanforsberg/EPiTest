@@ -1,5 +1,7 @@
 param($installPath, $toolsPath, $package, $project)
 
+[void] [Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
+
 function Copy-And-Include-Config-File {
     param([string]$sourcePath, [string]$destinationPath, [string]$sourceFileName, [string]$destinationFileName)
     
@@ -60,12 +62,18 @@ if($epiProjectFolder -ne "") {
     
     Copy-EPiServer-Binaries $epiProjectFolder $projectDir
     
-    #Write-Host "Trying to add references to EPiServer assemblies"  -ForegroundColor magenta
-    #AddReferenceFromEPiServerProject $epiProject $epiProjectFolder "EPiServer"
-    #AddReferenceFromEPiServerProject $epiProject $epiProjectFolder "EPiServer.BaseLibrary"
-    #AddReferenceFromEPiServerProject $epiProject $epiProjectFolder "EPiServer.Configuration"
-    #AddReferenceFromEPiServerProject $epiProject $epiProjectFolder "EPiServer.Framework"
-    #AddReferenceFromEPiServerProject $epiProject $epiProjectFolder "EPiServer.Implementation"   
+    $tryAndAddReferences = [Windows.Forms.MessageBox]::Show("Want to add the neccesary references from the EPiServer project? This will add the references from GAC. If you answer no you can add them yourself manually.", "Try to add references", [Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
+    
+    if($tryAndAddReferences -eq "Yes")
+    {
+        Write-Host "Trying to add references to EPiServer assemblies"  -ForegroundColor magenta
+        AddReferenceFromEPiServerProject $epiProject $epiProjectFolder "EPiServer"
+        AddReferenceFromEPiServerProject $epiProject $epiProjectFolder "EPiServer.BaseLibrary"
+        AddReferenceFromEPiServerProject $epiProject $epiProjectFolder "EPiServer.Configuration"
+        AddReferenceFromEPiServerProject $epiProject $epiProjectFolder "EPiServer.Framework"
+        AddReferenceFromEPiServerProject $epiProject $epiProjectFolder "EPiServer.Implementation"   
+    }
+    
 }
 else {
     Write-Host "Could not find an EPiServer site web project."
