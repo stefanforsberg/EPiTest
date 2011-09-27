@@ -13,6 +13,7 @@
     <tags>EPiServer EPiTest EpiTest.DB</tags>
     <dependencies>
       <dependency id="Machine.Specifications" version="0.4.24.0" />
+      <dependency id="EpiTest.Common" version="1.0" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Web" targetFramework="net40" />

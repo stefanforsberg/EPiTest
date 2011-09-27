@@ -30,24 +30,43 @@ function AddReferenceFromEPiServerProject {
     }
 }
 
+function GetEpiServerProjectData {
+    $epiProject = ""
+    $epiProjectFolder = ""
+    $project.Globals.DTE.Solution.Projects | ForEach-Object {
+        if($_.FullName -ne "")
+        {
+            Write-Host $_.FullName
+        
+            $dir = ([System.IO.FileInfo]$_.FullName).DirectoryName
+            if(test-path "$dir\EPiServer.config") { 
+                $epiProjectFolder = $dir 
+                $epiProject = $_
+            }
+        }
+    }
+
+    Write-Output $epiProject
+    Write-Output $epiProjectFolder
+}
+
+function ShowDialogBox {
+    param($title, $message)
+    
+    [Windows.Forms.MessageBox]::Show($message, $title, [Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
+}
+
 $projectDir = (Get-Item $project.FullName).Directory
 
 $solutionDir = (Get-Item $project.Globals.DTE.Solution.FullName).Directory
 
 Write-Host "Trying to find an EPiServer website in the solution." -ForegroundColor magenta
 
-$epiProject = ""
-$epiProjectFolder = ""
-$project.Globals.DTE.Solution.Projects | ForEach-Object {
-    if($_.FullName -ne "")
-    {
-        $dir = ([System.IO.FileInfo]$_.FullName).DirectoryName
-        if(test-path "$dir\EPiServer.config") { 
-            $epiProjectFolder = $dir 
-            $epiProject = $_
-        }
-    }
-}
+$epiProjectData = GetEpiServerProjectData $project
+
+$epiProject = $epiProjectData[0]
+$epiProjectFolder = $epiProjectData[1]
+
 
 if($epiProjectFolder -ne "") {
     Write-Host "Trying to copy config files and includes them in project." -ForegroundColor magenta

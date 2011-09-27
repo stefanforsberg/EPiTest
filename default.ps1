@@ -34,6 +34,7 @@ task Specs {
 }
 
 task Nuget {
+
     cd "$base_dir\src\EPiTest.UI"
     exec { nuget.exe pack EPiTest.UI.csproj -OutputDirectory ..\..\build }
     cd "$base_dir"
