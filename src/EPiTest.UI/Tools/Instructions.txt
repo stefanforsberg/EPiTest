@@ -1,0 +1,17 @@
+
+ ____    ____        ______                __        __  __  ______     
+/\  _`\ /\  _`\   __/\__  _\              /\ \__    /\ \/\ \/\__  _\    
+\ \ \L\_\ \ \L\ \/\_\/_/\ \/    __    ____\ \ ,_\   \ \ \ \ \/_/\ \/    
+ \ \  _\L\ \ ,__/\/\ \ \ \ \  /'__`\ /',__\\ \ \/    \ \ \ \ \ \ \ \    
+  \ \ \L\ \ \ \/  \ \ \ \ \ \/\  __//\__, `\\ \ \_  __\ \ \_\ \ \_\ \__ 
+   \ \____/\ \_\   \ \_\ \ \_\ \____\/\____/ \ \__\/\_\\ \_____\/\_____\
+    \/___/  \/_/    \/_/  \/_/\/____/\/___/   \/__/\/_/ \/_____/\/_____/
+
+------------------------------------------------------------------------
+
+Welcome to EpiTest.UI. If an EpiServer site was found in the solution 
+during the installation of the package you should have got a question 
+about copying neccesary data from the site to this projects app.config.
+
+If you didn't get that question, or answered no, open app.config and 
+enter the url to the site and the slug to the UI.

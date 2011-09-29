@@ -67,6 +67,8 @@ $epiProjectData = GetEpiServerProjectData $project
 $epiProject = $epiProjectData[0]
 $epiProjectFolder = $epiProjectData[1]
 
+notepad "$toolsPath\Instructions.txt"
+
 
 if($epiProjectFolder -ne "") {
     Write-Host "Trying to copy config files and includes them in project." -ForegroundColor magenta
@@ -97,3 +99,4 @@ if($epiProjectFolder -ne "") {
 else {
     Write-Host "Could not find an EPiServer site web project."
 }
+
