@@ -10,10 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright 2011</copyright>
-    <tags>EPiServer Selenium</tags>
-    <dependencies>
-      <dependency id="Newtonsoft.Json" version="[4.0.2]" />
-    </dependencies>
+    <tags>EPiServer EpiTest Selenium</tags>
   </metadata>
 <files>
   <file src="Content\**\*.*" target="Content" />

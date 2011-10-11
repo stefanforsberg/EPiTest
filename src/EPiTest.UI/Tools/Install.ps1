@@ -12,8 +12,6 @@ function GetEpiServerProjectData {
     $project.Globals.DTE.Solution.Projects | ForEach-Object {
         if($_.FullName -ne "")
         {
-            Write-Host $_.FullName
-        
             $dir = ([System.IO.FileInfo]$_.FullName).DirectoryName
             if(test-path "$dir\EPiServer.config") { 
                 $epiProjectFolder = $dir 
