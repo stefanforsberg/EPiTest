@@ -2,8 +2,8 @@
 <package >
   <metadata>
     <id>EPiTest.UI.AlloyTechSample</id>
-    <version>1.0</version>
-    <title>EPiTest.UI.AlloytTechSample</title>
+    <version>1.1</version>
+    <title>EPiTest.UI.AlloyTechSample</title>
     <authors>Stefan Forsberg</authors>
     <owners>Stefan Forsberg</owners>
     <projectUrl>https://github.com/stefanforsberg/EPiTest</projectUrl>
