@@ -30,6 +30,7 @@ namespace EPiTest.DB
             Settings.InitializeAllSettings(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None));
 
             SiteMappingConfiguration.Instance = new SiteMappingConfiguration();
+            SiteMappingConfiguration.Instance.SiteId = "*";
             Settings.Instance = Settings.MapHostToSettings("*", true);
 
             ClassFactory.Instance = new DefaultBaseLibraryFactory(String.Empty);
@@ -46,7 +47,7 @@ namespace EPiTest.DB
                 0,
                 TimeSpan.Zero);
 
-            InitializationModule.FrameworkInitialization(HostType.TestFramework);
+            InitializationModule.FrameworkInitialization(HostType.WebApplication);
         }
 
         public static void ClearCache()
