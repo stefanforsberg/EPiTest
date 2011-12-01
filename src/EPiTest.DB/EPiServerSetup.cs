@@ -23,13 +23,15 @@ namespace EPiTest.DB
                 AppDomain.CurrentDomain.AppendPrivatePath(AppDomain.CurrentDomain.BaseDirectory);
             }
 
+            GenericHostingEnvironment.Instance = new EPiServerHostingEnvironment();
+
             Global.BaseDirectory = ".";
             Global.InstanceName = "EPiServer Unit Test";
 
-            Settings.InitializeAllSettings(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None));
+            SiteMappingConfiguration.CurrentHostNameResolver = () => "*";
+            InitializationModule.FrameworkInitialization(HostType.WebApplication);
 
-            SiteMappingConfiguration.Instance = new SiteMappingConfiguration();
-            Settings.Instance = Settings.MapHostToSettings("*", true);
+            Settings.InitializeAllSettings(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None));
 
             ClassFactory.Instance = new DefaultBaseLibraryFactory(String.Empty);
             ClassFactory.RegisterClass(typeof(IRuntimeCache), typeof(DefaultRuntimeCache));
@@ -37,15 +39,11 @@ namespace EPiTest.DB
             
             LanguageManager.Instance = new LanguageManager(".");
 
-            GenericHostingEnvironment.Instance = new EPiServerHostingEnvironment();
-
             DataAccessBase.Initialize(
                 ConfigurationManager.ConnectionStrings[Settings.Instance.ConnectionStringName],
                 TimeSpan.Zero,
                 0,
                 TimeSpan.Zero);
-
-            InitializationModule.FrameworkInitialization(HostType.TestFramework);
         }
 
         public static void ClearCache()
