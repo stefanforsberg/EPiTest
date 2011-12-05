@@ -37,7 +37,10 @@ namespace EPiTest.DB
                 typeof(PageReference).GetField("_start", BindingFlags.NonPublic | BindingFlags.Static).SetValue(null, null);
             }
 
-            GenericHostingEnvironment.Instance = new EPiServerHostingEnvironment();
+            if (!(GenericHostingEnvironment.Instance is EPiServerHostingEnvironment))
+            {
+                GenericHostingEnvironment.Instance = new EPiServerHostingEnvironment();
+            }
 
             Global.BaseDirectory = ".";
             Global.InstanceName = "EPiServer Unit Test";

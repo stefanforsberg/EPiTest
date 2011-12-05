@@ -12,6 +12,14 @@ namespace EPiTest.DB
     {
         VirtualPathProvider _provider = null;
 
+        public EPiServerHostingEnvironment()
+        {
+            //We need the first provider to be one that doesn't delegates to its parent.
+            //The default hosting environment uses a MapPathBasedVirtualPathProvider but that's internal
+            //so we use our custom dummy provider.
+            _provider = new DummyVirtualPathProvider();
+        }
+
         public void RegisterVirtualPathProvider(VirtualPathProvider virtualPathProvider)
         {
             // Sets up the provider chain

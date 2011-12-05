@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Database.cs" />
     <Compile Include="DBTestBase.cs" />
+    <Compile Include="DummyVirtualPathProvider.cs" />
     <Compile Include="EPiServerHostingEnviroment.cs" />
     <Compile Include="EPiServerSetup.cs" />
     <Compile Include="NullChangeLog.cs" />
