@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Reflection;
 using EPiServer;
 using EPiServer.BaseLibrary;
 using EPiServer.ChangeLog;
@@ -16,21 +17,37 @@ namespace EPiTest.DB
 {
     public class EPiServerSetup
     {
-        public static void StartUp()
+        public static void StartUp(Func<string> hostNameResolver = null)
         {
             if (string.IsNullOrEmpty(AppDomain.CurrentDomain.RelativeSearchPath))
             {
                 AppDomain.CurrentDomain.AppendPrivatePath(AppDomain.CurrentDomain.BaseDirectory);
             }
 
+            if (hostNameResolver == null)
+            {
+                hostNameResolver = () => "*";
+            }
+            SiteMappingConfiguration.CurrentHostNameResolver = hostNameResolver;
+
+            if (SiteMappingConfiguration.Instance != null)
+            {
+                SiteMappingConfiguration.Instance.SiteId =
+                    SiteMappingConfiguration.Instance.SiteIdForHost(hostNameResolver());
+                typeof(PageReference).GetField("_start", BindingFlags.NonPublic | BindingFlags.Static).SetValue(null, null);
+            }
+
+            if (!(GenericHostingEnvironment.Instance is EPiServerHostingEnvironment))
+            {
+                GenericHostingEnvironment.Instance = new EPiServerHostingEnvironment();
+            }
+
             Global.BaseDirectory = ".";
             Global.InstanceName = "EPiServer Unit Test";
 
-            Settings.InitializeAllSettings(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None));
+            InitializationModule.FrameworkInitialization(HostType.WebApplication);
 
-            SiteMappingConfiguration.Instance = new SiteMappingConfiguration();
-            SiteMappingConfiguration.Instance.SiteId = "*";
-            Settings.Instance = Settings.MapHostToSettings("*", true);
+            Settings.InitializeAllSettings(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None));
 
             ClassFactory.Instance = new DefaultBaseLibraryFactory(String.Empty);
             ClassFactory.RegisterClass(typeof(IRuntimeCache), typeof(DefaultRuntimeCache));
@@ -38,15 +55,11 @@ namespace EPiTest.DB
             
             LanguageManager.Instance = new LanguageManager(".");
 
-            GenericHostingEnvironment.Instance = new EPiServerHostingEnvironment();
-
             DataAccessBase.Initialize(
                 ConfigurationManager.ConnectionStrings[Settings.Instance.ConnectionStringName],
                 TimeSpan.Zero,
                 0,
                 TimeSpan.Zero);
-
-            InitializationModule.FrameworkInitialization(HostType.WebApplication);
         }
 
         public static void ClearCache()
