@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Configuration;
 using System.Reflection;
 using EPiServer;
@@ -6,6 +6,7 @@ using EPiServer.BaseLibrary;
 using EPiServer.ChangeLog;
 using EPiServer.Configuration;
 using EPiServer.Core;
+using EPiServer.Data.Dynamic;
 using EPiServer.DataAccess;
 using EPiServer.Framework.Initialization;
 using EPiServer.Implementation;
@@ -52,7 +53,7 @@ namespace EPiTest.DB
             ClassFactory.Instance = new DefaultBaseLibraryFactory(String.Empty);
             ClassFactory.RegisterClass(typeof(IRuntimeCache), typeof(DefaultRuntimeCache));
             ClassFactory.RegisterClass(typeof(IChangeLog), typeof(NullChangeLog));
-            
+
             LanguageManager.Instance = new LanguageManager(".");
 
             DataAccessBase.Initialize(
@@ -65,7 +66,9 @@ namespace EPiTest.DB
         public static void ClearCache()
         {
             DataFactoryCache.Clear();
-            CacheManager.Clear();PermanentLinkMapStore.Clear();
+            CacheManager.Clear(); 
+            PermanentLinkMapStore.Clear();
+            StoreDefinition.ClearCache();
         }
     }
 }
